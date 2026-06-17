@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650">
+<rect width="100%" height="100%" fill="#0f172a"/>
+<text x="24" y="34" fill="#e2e8f0" font-size="22" font-family="Arial, sans-serif">Netflix: visualizaciones alrededor de parciales</text>
+<line x1="80" y1="570" x2="1170" y2="570" stroke="#94a3b8" stroke-width="1"/>
+<line x1="80" y1="60" x2="80" y2="570" stroke="#94a3b8" stroke-width="1"/>
+<text x="80" y="622" fill="#cbd5e1" font-size="14" font-family="Arial, sans-serif">Días relativos al parcial</text>
+<text x="18" y="80" fill="#cbd5e1" font-size="14" font-family="Arial, sans-serif" transform="rotate(-90 18,80)">views</text>
+<line x1="80.0" y1="570" x2="80.0" y2="576" stroke="#94a3b8" stroke-width="1"/>
+<text x="70.0" y="594" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">-14</text>
+<line x1="352.5" y1="570" x2="352.5" y2="576" stroke="#94a3b8" stroke-width="1"/>
+<text x="342.5" y="594" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">-7</text>
+<line x1="625.0" y1="60" x2="625.0" y2="570" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="6,4"/>
+<line x1="625.0" y1="570" x2="625.0" y2="576" stroke="#94a3b8" stroke-width="1"/>
+<text x="615.0" y="594" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">0</text>
+<line x1="897.5" y1="570" x2="897.5" y2="576" stroke="#94a3b8" stroke-width="1"/>
+<text x="887.5" y="594" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">7</text>
+<line x1="1170.0" y1="570" x2="1170.0" y2="576" stroke="#94a3b8" stroke-width="1"/>
+<text x="1160.0" y="594" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">14</text>
+<line x1="74" y1="570.0" x2="80" y2="570.0" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="574.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">2.40</text>
+<line x1="74" y1="468.0" x2="80" y2="468.0" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="472.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">2.61</text>
+<line x1="74" y1="366.0" x2="80" y2="366.0" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="370.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">2.81</text>
+<line x1="74" y1="264.0" x2="80" y2="264.0" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="268.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">3.02</text>
+<line x1="74" y1="162.0" x2="80" y2="162.0" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="166.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">3.23</text>
+<line x1="74" y1="60.0" x2="80" y2="60.0" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="64.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">3.43</text>
+<path d="M 80.00 495.98 L 118.93 339.79 L 157.86 563.57 L 196.79 384.32 L 235.71 378.04 L 274.64 190.57 L 313.57 60.00 L 352.50 364.79 L 391.43 199.88 L 430.36 475.97 L 469.29 274.55 L 508.21 279.25 L 547.14 383.22 L 586.07 296.50 L 625.00 461.15 L 663.93 506.09 L 702.86 305.10 L 741.79 513.16 L 780.71 494.99 L 819.64 443.42 L 858.57 570.00 L 897.50 437.65 L 936.43 418.14 L 975.36 368.40 L 1014.29 328.83 L 1053.21 300.55 L 1092.14 418.62 L 1131.07 412.04 L 1170.00 355.97" fill="none" stroke="#38bdf8" stroke-width="3"/>
+<circle cx="1170.00" cy="355.97" r="4" fill="#38bdf8"/>
+<text x="1030" y="80" fill="#38bdf8" font-size="14" font-family="Arial, sans-serif">netflix</text>
+</svg>

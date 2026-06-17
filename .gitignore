@@ -1,0 +1,14 @@
+# Ignorar carpetas de exportes y datos personales
+apple_health_export cande/
+apple_health_export juanma/
+apple_health_export zahi/
+Samsung Health vicky/
+Spotify Account Data cande/
+Spotify Account Data juanma/
+Spotify Account Data ninu/
+Spotify Account Data tizi/
+Spotify Account Data vicky/
+Spotify Account Data zahi/
+Takeout Nina/
+Takeout tizi/
+__pycache__/

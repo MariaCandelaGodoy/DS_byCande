@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DS_TPO - Dashboard interactivo</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #07111f;
+            --panel: rgba(15, 23, 42, 0.82);
+            --panel-border: rgba(148, 163, 184, 0.25);
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-2: #22c55e;
+            --accent-3: #f97316;
+            --accent-4: #e879f9;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Inter, Segoe UI, Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 30%),
+                radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 28%),
+                linear-gradient(180deg, #020617 0%, var(--bg) 100%);
+        }
+        .wrap { padding: 24px; max-width: 1600px; margin: 0 auto; }
+        .hero {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            gap: 18px;
+            align-items: stretch;
+            margin-bottom: 18px;
+        }
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            border-radius: 20px;
+            box-shadow: 0 24px 60px rgba(2, 6, 23, 0.45);
+            backdrop-filter: blur(12px);
+        }
+        .card.pad { padding: 18px; }
+        h1 { margin: 0 0 8px; font-size: 34px; line-height: 1.05; }
+        .subtitle { color: var(--muted); max-width: 70ch; }
+        .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .metric { padding: 16px; border-radius: 16px; background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(148, 163, 184, 0.16); }
+        .metric .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+        .metric .value { margin-top: 8px; font-size: 28px; font-weight: 700; }
+        .controls { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0; }
+        .control { display: flex; flex-direction: column; gap: 6px; }
+        .control label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+        select, input[type="range"] { width: 100%; }
+        select {
+            background: #0f172a;
+            color: var(--text);
+            border: 1px solid rgba(148, 163, 184, 0.24);
+            border-radius: 12px;
+            padding: 10px 12px;
+        }
+        .grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; align-items: start; }
+        .cluster-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .panel-title { margin: 0 0 10px; font-size: 18px; }
+        .panel-desc { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+        canvas { width: 100%; height: 560px; display: block; border-radius: 16px; background: linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.9)); }
+        .small-canvas { width: 100%; height: 360px; }
+        .stack { display: grid; gap: 18px; }
+        .table-wrap { overflow: auto; max-height: 430px; }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th, td { padding: 10px 8px; border-bottom: 1px solid rgba(148, 163, 184, 0.14); text-align: left; }
+        th { position: sticky; top: 0; background: rgba(15, 23, 42, 0.95); color: var(--muted); text-transform: uppercase; font-size: 11px; letter-spacing: 0.08em; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .chip { padding: 6px 10px; border-radius: 999px; background: rgba(56, 189, 248, 0.12); color: #bfdbfe; font-size: 12px; border: 1px solid rgba(56, 189, 248, 0.18); }
+        .small { font-size: 12px; color: var(--muted); }
+        @media (max-width: 1100px) {
+            .hero, .grid, .controls, .metrics { grid-template-columns: 1fr; }
+            canvas { height: 460px; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="hero">
+        <div class="card pad">
+            <h1>Dashboard interactivo de comportamiento alrededor de parciales</h1>
+            <p class="subtitle">Filtra por fuente, estudiante y métrica. La vista 3D usa <strong>delta_pct</strong>, <strong>support_score</strong> y <strong>effect_size</strong> para ubicar cada caso en el espacio. Todo se genera sin librerías externas.</p>
+            <div class="chips" id="chips"></div>
+        </div>
+        <div class="card pad">
+            <h3 class="panel-title">Lectura rápida</h3>
+            <p class="panel-desc">La barra superior cambia con el filtro activo y te muestra el resumen del subconjunto actual.</p>
+            <div class="metrics">
+                <div class="metric"><div class="label">casos</div><div class="value" id="metric-count">0</div></div>
+                <div class="metric"><div class="label">delta pct medio</div><div class="value" id="metric-delta">0</div></div>
+                <div class="metric"><div class="label">support medio</div><div class="value" id="metric-support">0</div></div>
+                <div class="metric"><div class="label">señal dominante</div><div class="value" id="metric-source">-</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls card pad">
+        <div class="control">
+            <label for="sourceFilter">Fuente</label>
+            <select id="sourceFilter"></select>
+        </div>
+        <div class="control">
+            <label for="studentFilter">Estudiante</label>
+            <select id="studentFilter"></select>
+        </div>
+        <div class="control">
+            <label for="metricFilter">Métrica principal</label>
+            <select id="metricFilter">
+                <option value="support_score">support_score</option>
+                <option value="delta_pct">delta_pct</option>
+                <option value="delta_abs">delta_abs</option>
+                <option value="effect_size">effect_size</option>
+            </select>
+        </div>
+        <div class="control">
+            <label>Rotación 3D</label>
+            <div class="small">X <span id="rotXVal">0.75</span> | Y <span id="rotYVal">-0.45</span></div>
+            <input id="rotX" type="range" min="-1.5" max="1.5" step="0.01" value="0.75" />
+            <input id="rotY" type="range" min="-1.5" max="1.5" step="0.01" value="-0.45" />
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card pad">
+            <h3 class="panel-title">Vista 3D interactiva</h3>
+            <p class="panel-desc">Puntos más altos y hacia adelante indican mayor soporte y efecto; usa los sliders para cambiar la perspectiva.</p>
+            <canvas id="scatter3d" width="1200" height="560"></canvas>
+            <div class="small" id="scatterHint" style="margin-top:10px;">-</div>
+            <div style="margin-top:18px;">
+                <h3 class="panel-title">Comparación de clustering</h3>
+                <p class="panel-desc">K-Means a la izquierda y clustering de densidad a la derecha, sobre el mismo subconjunto activo.</p>
+                <div class="cluster-grid">
+                    <div>
+                        <div class="small" style="margin-bottom:8px;">K-Means</div>
+                        <canvas class="small-canvas" id="clusterKMeans" width="560" height="360"></canvas>
+                    </div>
+                    <div>
+                        <div class="small" style="margin-bottom:8px;">Densidad</div>
+                        <canvas class="small-canvas" id="clusterDensity" width="560" height="360"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stack">
+            <div class="card pad">
+                <h3 class="panel-title">Top cambios del filtro</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>Estudiante</th><th>Fuente</th><th>Delta</th><th>%</th><th>Support</th></tr>
+                        </thead>
+                        <tbody id="topRows"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card pad">
+                <h3 class="panel-title">Distribución por métrica</h3>
+                <p class="panel-desc">Histograma simple del subconjunto activo para ver rápidamente dónde se concentra el cambio.</p>
+                <canvas id="histogram" width="1200" height="360"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const ROWS = [{"student": "cande", "source": "netflix", "baseline_mean": 2.390625, "pre_mean": 2.219047619047619, "pre_n": 105, "pre_std": 1.5117378985534835, "event_day": 2.2857142857142856, "post_mean": 2.2803738317757007, "post_n": 107, "post_std": 1.6844222644345155, "delta_abs": 0.061326212728081586, "delta_pct": 2.7636276122096852, "effect_size": 0.03837493091757296, "support_score": 0.32878774385169346, "kmeans_cluster": null, "density_cluster": null}, {"student": "juanma", "source": "netflix", "baseline_mean": 1.5, "pre_mean": 2.076923076923077, "pre_n": 26, "pre_std": 1.071414482860317, "event_day": 2.6666666666666665, "post_mean": 1.5806451612903225, "post_n": 31, "post_std": 0.8337321279561345, "delta_abs": -0.4962779156327546, "delta_pct": -23.894862604540034, "effect_size": -0.5209865873997744, "support_score": 2.0151081938195636, "kmeans_cluster": null, "density_cluster": null}, {"student": "ninu", "source": "netflix", "baseline_mean": 1.9257142857142857, "pre_mean": 2.010928961748634, "pre_n": 183, "pre_std": 1.5076818634947307, "event_day": 1.6666666666666667, "post_mean": 2.0, "post_n": 223, "post_std": 1.4517655865826447, "delta_abs": -0.010928961748633892, "delta_pct": -0.5434782608695659, "effect_size": -0.007385812340305723, "support_score": 0.06567008945838909, "kmeans_cluster": null, "density_cluster": null}, {"student": "tizi", "source": "netflix", "baseline_mean": 1.5454545454545454, "pre_mean": 1.7878787878787878, "pre_n": 33, "pre_std": 0.9772433634301272, "event_day": 1.4285714285714286, "post_mean": 1.625, "post_n": 40, "post_std": 0.9134412953222555, "delta_abs": -0.16287878787878785, "delta_pct": -9.110169491525422, "effect_size": -0.17229609086294448, "support_score": 0.7010409053324973, "kmeans_cluster": null, "density_cluster": null}, {"student": "vicky", "source": "netflix", "baseline_mean": 2.3684210526315788, "pre_mean": 2.1052631578947367, "pre_n": 57, "pre_std": 1.9073653227967555, "event_day": 1.75, "post_mean": 2.388235294117647, "post_n": 85, "post_std": 2.5069039618717834, "delta_abs": 0.2829721362229103, "delta_pct": 13.441176470588239, "effect_size": 0.12820791753947483, "support_score": 1.4043467467670452, "kmeans_cluster": null, "density_cluster": null}, {"student": "zahi", "source": "netflix", "baseline_mean": 4.0137931034482754, "pre_mean": 4.074468085106383, "pre_n": 282, "pre_std": 3.4298626868141353, "event_day": 3.8823529411764706, "post_mean": 3.5434782608695654, "post_n": 276, "post_std": 3.262922059361737, "delta_abs": -0.5309898242368174, "delta_pct": -13.032126234532857, "effect_size": -0.15867530314349784, "support_score": 3.3591209968464613, "kmeans_cluster": null, "density_cluster": null}, {"student": "cande", "source": "spotify", "baseline_mean": 79.57098187645687, "pre_mean": 74.28517562785387, "pre_n": 292, "pre_std": 50.42540169140037, "event_day": 71.39865333333333, "post_mean": 73.52078896797153, "post_n": 281, "post_std": 50.61796911372552, "delta_abs": -0.7643866598823479, "delta_pct": -1.02898950352045, "effect_size": -0.015129872524869704, "support_score": 4.85586516572313, "kmeans_cluster": null, "density_cluster": null}, {"student": "juanma", "source": "spotify", "baseline_mean": 169.8688476973684, "pre_mean": 170.58890273132664, "pre_n": 299, "pre_std": 149.67296720967312, "event_day": 219.61347906976744, "post_mean": 170.597981, "post_n": 300, "post_std": 134.63664426095028, "delta_abs": 0.009078268673363254, "delta_pct": 0.005321722883499231, "effect_size": 6.386184854184064e-05, "support_score": 0.058073046094657146, "kmeans_cluster": null, "density_cluster": null}, {"student": "ninu", "source": "spotify", "baseline_mean": 81.46152468253969, "pre_mean": 82.68496126373627, "pre_n": 182, "pre_std": 65.55979372798764, "event_day": 94.11760158730158, "post_mean": 82.22109527777778, "post_n": 180, "post_std": 62.65560374233749, "delta_abs": -0.46386598595849193, "delta_pct": -0.5610040554762078, "effect_size": -0.007235729797052677, "support_score": 2.734212982352794, "kmeans_cluster": null, "density_cluster": null}, {"student": "tizi", "source": "spotify", "baseline_mean": 75.29165438596492, "pre_mean": 79.37259805936073, "pre_n": 146, "pre_std": 88.82009250116714, "event_day": 70.65317564102564, "post_mean": 85.9023143884892, "post_n": 139, "post_std": 82.06200346142293, "delta_abs": 6.529716329128476, "delta_pct": 8.226663217254233, "effect_size": 0.07642364511444168, "support_score": 36.932022084527325, "kmeans_cluster": null, "density_cluster": null}, {"student": "vicky", "source": "spotify", "baseline_mean": 72.94028644688645, "pre_mean": 74.14824673784105, "pre_n": 281, "pre_std": 62.765661421174606, "event_day": 86.92258178294574, "post_mean": 79.08876280637256, "post_n": 272, "post_std": 71.52155348733292, "delta_abs": 4.940516068531508, "delta_pct": 6.663024799492864, "effect_size": 0.07358133195178077, "support_score": 31.21005364243477, "kmeans_cluster": null, "density_cluster": null}, {"student": "zahi", "source": "spotify", "baseline_mean": 71.24763205741627, "pre_mean": 60.89974239316239, "pre_n": 195, "pre_std": 58.309576355762744, "event_day": 74.79896666666667, "post_mean": 66.19236285240464, "post_n": 201, "post_std": 55.482335966204715, "delta_abs": 5.292620459242251, "delta_pct": 8.690710750586833, "effect_size": 0.0930227878457143, "support_score": 31.670703585967004, "kmeans_cluster": null, "density_cluster": null}, {"student": "vicky", "source": "steps", "baseline_mean": 3431.2018633540374, "pre_mean": 3442.913043478261, "pre_n": 322, "pre_std": 2732.399392410182, "event_day": 3928.782608695652, "post_mean": 3162.946540880503, "post_n": 318, "post_std": 2493.5220412296535, "delta_abs": -279.9665025977579, "delta_pct": -8.13167509786762, "effect_size": -0.10714531634386329, "support_score": 1809.4317532403663, "kmeans_cluster": 2, "density_cluster": -1}, {"student": "Nina", "source": "steps", "baseline_mean": 3513.992537313433, "pre_mean": 3456.941935483871, "pre_n": 155, "pre_std": 3051.290365304932, "event_day": 3353.0, "post_mean": 3887.358823529412, "post_n": 170, "post_std": 3318.8584351282816, "delta_abs": 430.4168880455409, "delta_pct": 12.450798887522971, "effect_size": 0.13513558365112904, "support_score": 2490.778362326748, "kmeans_cluster": 2, "density_cluster": -1}, {"student": "tizi", "source": "steps", "baseline_mean": 7019.018062397373, "pre_mean": 6894.995106035889, "pre_n": 613, "pre_std": 5432.493020933233, "event_day": 7674.125, "post_mean": 6775.0, "post_n": 614, "post_std": 4781.586759105539, "delta_abs": -119.99510603588897, "delta_pct": -1.7403218449110291, "effect_size": -0.02349601895031085, "support_score": 853.5422415826538, "kmeans_cluster": 1, "density_cluster": -1}, {"student": "cande", "source": "steps", "baseline_mean": 3897.724719101124, "pre_mean": 3592.2899575671854, "pre_n": 707, "pre_std": 2442.999256183359, "event_day": 4176.792079207921, "post_mean": 3800.077793493635, "post_n": 707, "post_std": 2531.5784641434825, "delta_abs": 207.7878359264496, "delta_pct": 5.784272382822076, "effect_size": 0.08353988925628744, "support_score": 1507.4768145816413, "kmeans_cluster": 2, "density_cluster": -1}, {"student": "juanma", "source": "steps", "baseline_mean": 5137.955223880597, "pre_mean": 5367.866071428572, "pre_n": 336, "pre_std": 3207.66699866508, "event_day": 5388.0625, "post_mean": 5044.488095238095, "post_n": 336, "post_std": 2988.0993192203205, "delta_abs": -323.37797619047615, "delta_pct": -6.02433018796265, "effect_size": -0.10438675689138782, "support_score": 2105.7550261682973, "kmeans_cluster": 0, "density_cluster": -1}, {"student": "zahi", "source": "steps", "baseline_mean": 4723.489194499018, "pre_mean": 4474.440476190476, "pre_n": 504, "pre_std": 2475.681517605939, "event_day": 4980.25, "post_mean": 4765.081349206349, "post_n": 504, "post_std": 2628.2847670667284, "delta_abs": 290.6408730158728, "delta_pct": 6.495580275621935, "effect_size": 0.11388824173414869, "support_score": 2010.2800919175731, "kmeans_cluster": 0, "density_cluster": -1}, {"student": "juanma", "source": "sleep", "baseline_mean": null, "pre_mean": null, "pre_n": 0, "pre_std": null, "event_day": null, "post_mean": 140.03333333333333, "post_n": 1, "post_std": null, "delta_abs": null, "delta_pct": null, "effect_size": null, "support_score": null, "kmeans_cluster": null, "density_cluster": null}];
+const COLORS = { netflix: '#38bdf8', spotify: '#f97316', steps: '#22c55e', sleep: '#e879f9' };
+const METRIC_LABELS = { support_score: 'Support score', delta_pct: 'Delta pct', delta_abs: 'Delta abs', effect_size: 'Effect size' };
+
+const sourceFilter = document.getElementById('sourceFilter');
+const studentFilter = document.getElementById('studentFilter');
+const metricFilter = document.getElementById('metricFilter');
+const rotX = document.getElementById('rotX');
+const rotY = document.getElementById('rotY');
+const rotXVal = document.getElementById('rotXVal');
+const rotYVal = document.getElementById('rotYVal');
+const scatter = document.getElementById('scatter3d');
+const clusterKMeans = document.getElementById('clusterKMeans');
+const clusterDensity = document.getElementById('clusterDensity');
+const histogram = document.getElementById('histogram');
+const sctx = scatter.getContext('2d');
+const kctx = clusterKMeans.getContext('2d');
+const dctx = clusterDensity.getContext('2d');
+const hctx = histogram.getContext('2d');
+
+const sources = ['all', ...new Set(ROWS.map(r => r.source))];
+const students = ['all', ...new Set(ROWS.map(r => r.student))];
+
+function fillSelect(select, values) {
+    select.innerHTML = values.map(v => `<option value="${v}">${v === 'all' ? 'Todos' : v}</option>`).join('');
+}
+
+function numeric(v) { return typeof v === 'number' && Number.isFinite(v); }
+
+fillSelect(sourceFilter, sources);
+fillSelect(studentFilter, students);
+
+function filteredRows() {
+    return ROWS.filter(r =>
+        (sourceFilter.value === 'all' || r.source === sourceFilter.value) &&
+        (studentFilter.value === 'all' || r.student === studentFilter.value)
+    );
+}
+
+function scale(value, min, max) {
+    if (max === min) return 0.5;
+    return (value - min) / (max - min);
+}
+
+function project(point, rotX, rotY, dims) {
+    let x = point.x, y = point.y, z = point.z;
+    const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+    let x1 = x * cosY + z * sinY;
+    let z1 = -x * sinY + z * cosY;
+    const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+    let y1 = y * cosX - z1 * sinX;
+    let z2 = y * sinX + z1 * cosX;
+    const persp = 1 / (1 + z2 * 0.55);
+    return {
+        x: dims.cx + x1 * dims.scale * persp,
+        y: dims.cy - y1 * dims.scale * persp,
+        z: z2
+    };
+}
+
+function drawScatter() {
+    const rows = filteredRows().filter(r => numeric(r.delta_pct) && numeric(r.support_score) && numeric(r.effect_size));
+    const w = scatter.width, h = scatter.height;
+    sctx.clearRect(0, 0, w, h);
+    sctx.fillStyle = '#020617';
+    sctx.fillRect(0, 0, w, h);
+
+    if (!rows.length) {
+        sctx.fillStyle = '#e2e8f0';
+        sctx.font = '20px Inter, Arial';
+        sctx.fillText('No hay datos para el filtro seleccionado', 40, 60);
+        document.getElementById('scatterHint').textContent = 'Ajusta los filtros para ver puntos.';
+        return;
+    }
+
+    const xs = rows.map(r => r.delta_pct);
+    const ys = rows.map(r => r.support_score);
+    const zs = rows.map(r => r.effect_size);
+    const minX = Math.min(...xs), maxX = Math.max(...xs);
+    const minY = Math.min(...ys), maxY = Math.max(...ys);
+    const minZ = Math.min(...zs), maxZ = Math.max(...zs);
+
+    const dims = { cx: w / 2, cy: h / 2 + 10, scale: Math.min(w, h) * 0.24 };
+    const rX = parseFloat(rotX.value);
+    const rY = parseFloat(rotY.value);
+
+    const baseAxes = [
+        { name: 'delta_pct', from: {x: -0.5, y: 0, z: 0}, to: {x: 0.5, y: 0, z: 0}, color: '#38bdf8' },
+        { name: 'support_score', from: {x: 0, y: -0.5, z: 0}, to: {x: 0, y: 0.5, z: 0}, color: '#22c55e' },
+        { name: 'effect_size', from: {x: 0, y: 0, z: -0.5}, to: {x: 0, y: 0, z: 0.5}, color: '#f97316' }
+    ];
+
+    sctx.strokeStyle = '#334155';
+    sctx.lineWidth = 1;
+    sctx.beginPath();
+    sctx.moveTo(40, h - 60);
+    sctx.lineTo(w - 40, h - 60);
+    sctx.stroke();
+
+    baseAxes.forEach(axis => {
+        const a = project(axis.from, rX, rY, dims);
+        const b = project(axis.to, rX, rY, dims);
+        sctx.strokeStyle = axis.color;
+        sctx.lineWidth = 2;
+        sctx.beginPath();
+        sctx.moveTo(a.x, a.y);
+        sctx.lineTo(b.x, b.y);
+        sctx.stroke();
+    });
+
+    const points = rows.map(row => {
+        const point = {
+            x: scale(row.delta_pct, minX, maxX) - 0.5,
+            y: scale(row.support_score, minY, maxY) - 0.5,
+            z: scale(row.effect_size, minZ, maxZ) - 0.5
+        };
+        const projected = project(point, rX, rY, dims);
+        return { row, projected };
+    }).sort((a, b) => a.projected.z - b.projected.z);
+
+    points.forEach(({ row, projected }) => {
+        const color = COLORS[row.source] || '#e2e8f0';
+        const radius = 3.5 + Math.min(6, Math.abs(row.delta_pct || 0) / 6);
+        sctx.beginPath();
+        sctx.fillStyle = color;
+        sctx.globalAlpha = 0.9;
+        sctx.arc(projected.x, projected.y, radius, 0, Math.PI * 2);
+        sctx.fill();
+    });
+    sctx.globalAlpha = 1;
+
+    const top = [...rows].sort((a, b) => (b.support_score || 0) - (a.support_score || 0)).slice(0, 8);
+    document.getElementById('scatterHint').textContent = `Puntos: ${rows.length} | Top: ${top.map(r => `${r.student}/${r.source}`).join(', ')}`;
+
+    const legend = Object.entries(COLORS).map(([k, v]) => `<span class="chip" style="background:${v}22;color:${v};border-color:${v}44">${k}</span>`).join('');
+    document.getElementById('chips').innerHTML = legend;
+}
+
+function clusterColor(label, densityMode) {
+    if (densityMode && label === -1) return '#64748b';
+    const palette = ['#38bdf8', '#22c55e', '#f97316', '#e879f9', '#facc15', '#fb7185'];
+    const index = Math.abs(label || 0) % palette.length;
+    return palette[index];
+}
+
+function drawClusterPanel(canvas, ctx, labelKey, title, densityMode) {
+    const rows = filteredRows().filter(r => numeric(r.delta_pct) && numeric(r.support_score) && r[labelKey] !== undefined && r[labelKey] !== null);
+    const w = canvas.width, h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = '#020617';
+    ctx.fillRect(0, 0, w, h);
+
+    if (!rows.length) {
+        ctx.fillStyle = '#e2e8f0';
+        ctx.font = '18px Inter, Arial';
+        ctx.fillText('Sin datos para este filtro', 30, 40);
+        return;
+    }
+
+    const xs = rows.map(r => r.delta_pct);
+    const ys = rows.map(r => r.support_score);
+    const minX = Math.min(...xs), maxX = Math.max(...xs);
+    const minY = Math.min(...ys), maxY = Math.max(...ys);
+    const left = 58, right = 16, top = 28, bottom = 46;
+    const plotW = w - left - right;
+    const plotH = h - top - bottom;
+
+    function xPos(value) { return left + scale(value, minX, maxX) * plotW; }
+    function yPos(value) { return top + plotH - scale(value, minY, maxY) * plotH; }
+
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(left, top + plotH);
+    ctx.lineTo(left + plotW, top + plotH);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(left, top);
+    ctx.lineTo(left, top + plotH);
+    ctx.stroke();
+
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '12px Inter, Arial';
+    ctx.fillText('delta_pct', w - 68, top + plotH + 28);
+    ctx.save();
+    ctx.translate(16, 40);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('support_score', 0, 0);
+    ctx.restore();
+    ctx.fillStyle = '#e2e8f0';
+    ctx.font = '14px Inter, Arial';
+    ctx.fillText(title, left, 18);
+
+    rows.sort((a, b) => (a[labelKey] || 0) - (b[labelKey] || 0)).forEach((row) => {
+        const cluster = row[labelKey];
+        const color = clusterColor(cluster, densityMode);
+        const x = xPos(row.delta_pct);
+        const y = yPos(row.support_score);
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        ctx.globalAlpha = 0.9;
+        ctx.arc(x, y, 5.5, 0, Math.PI * 2);
+        ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+
+    const counts = rows.reduce((acc, row) => (acc[row[labelKey]] = (acc[row[labelKey]] || 0) + 1, acc), {});
+    const summary = Object.entries(counts).sort((a, b) => Number(a[0]) - Number(b[0])).map(([label, count]) => `${densityMode && Number(label) === -1 ? 'noise' : label}:${count}`).join(' | ');
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '12px Inter, Arial';
+    ctx.fillText(summary, left, h - 14);
+}
+
+function drawHistogram() {
+    const metric = metricFilter.value;
+    const rows = filteredRows().filter(r => numeric(r[metric]));
+    const w = histogram.width, h = histogram.height;
+    hctx.clearRect(0, 0, w, h);
+    hctx.fillStyle = '#020617';
+    hctx.fillRect(0, 0, w, h);
+
+    if (!rows.length) return;
+    const values = rows.map(r => r[metric]);
+    const min = Math.min(...values), max = Math.max(...values);
+    const bins = 10;
+    const counts = Array(bins).fill(0);
+    values.forEach(v => {
+        const idx = Math.min(bins - 1, Math.floor(scale(v, min, max) * bins));
+        counts[idx] += 1;
+    });
+    const maxCount = Math.max(...counts) || 1;
+    const barW = (w - 80) / bins;
+    counts.forEach((count, i) => {
+        const bh = (count / maxCount) * (h - 90);
+        const x = 40 + i * barW;
+        const y = h - 40 - bh;
+        hctx.fillStyle = '#38bdf8';
+        hctx.fillRect(x + 4, y, barW - 8, bh);
+    });
+    hctx.fillStyle = '#94a3b8';
+    hctx.font = '13px Inter, Arial';
+    hctx.fillText(`Métrica: ${METRIC_LABELS[metric] || metric}`, 42, 28);
+}
+
+function updateTable() {
+    const rows = filteredRows().filter(r => numeric(r.support_score));
+    const top = rows.sort((a, b) => (b.support_score || 0) - (a.support_score || 0)).slice(0, 10);
+    document.getElementById('topRows').innerHTML = top.map(r => `
+        <tr>
+            <td>${r.student}</td>
+            <td>${r.source}</td>
+            <td>${(r.delta_abs ?? 0).toFixed(1)}</td>
+            <td>${(r.delta_pct ?? 0).toFixed(1)}</td>
+            <td>${(r.support_score ?? 0).toFixed(1)}</td>
+        </tr>
+    `).join('');
+}
+
+function updateMetrics() {
+    const rows = filteredRows();
+    const numericRows = rows.filter(r => numeric(r.delta_pct) && numeric(r.support_score));
+    const count = rows.length;
+    const avgDelta = numericRows.length ? numericRows.reduce((acc, r) => acc + r.delta_pct, 0) / numericRows.length : 0;
+    const avgSupport = numericRows.length ? numericRows.reduce((acc, r) => acc + r.support_score, 0) / numericRows.length : 0;
+    const sourceCounts = rows.reduce((acc, r) => (acc[r.source] = (acc[r.source] || 0) + 1, acc), {});
+    const dominant = Object.entries(sourceCounts).sort((a, b) => b[1] - a[1])[0];
+    document.getElementById('metric-count').textContent = count;
+    document.getElementById('metric-delta').textContent = avgDelta.toFixed(1) + '%';
+    document.getElementById('metric-support').textContent = avgSupport.toFixed(1);
+    document.getElementById('metric-source').textContent = dominant ? dominant[0] : '-';
+}
+
+function render() {
+    rotXVal.textContent = parseFloat(rotX.value).toFixed(2);
+    rotYVal.textContent = parseFloat(rotY.value).toFixed(2);
+    updateMetrics();
+    updateTable();
+    drawScatter();
+    drawClusterPanel(clusterKMeans, kctx, 'kmeans_cluster', 'K-Means', false);
+    drawClusterPanel(clusterDensity, dctx, 'density_cluster', 'Densidad', true);
+    drawHistogram();
+}
+
+sourceFilter.addEventListener('change', render);
+studentFilter.addEventListener('change', render);
+metricFilter.addEventListener('change', render);
+rotX.addEventListener('input', render);
+rotY.addEventListener('input', render);
+
+render();
+</script>
+</body>
+</html>

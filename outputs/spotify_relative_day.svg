@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650">
+<rect width="100%" height="100%" fill="#0f172a"/>
+<text x="24" y="34" fill="#e2e8f0" font-size="22" font-family="Arial, sans-serif">Spotify: minutos alrededor de parciales</text>
+<line x1="80" y1="570" x2="1170" y2="570" stroke="#94a3b8" stroke-width="1"/>
+<line x1="80" y1="60" x2="80" y2="570" stroke="#94a3b8" stroke-width="1"/>
+<text x="80" y="622" fill="#cbd5e1" font-size="14" font-family="Arial, sans-serif">Días relativos al parcial</text>
+<text x="18" y="80" fill="#cbd5e1" font-size="14" font-family="Arial, sans-serif" transform="rotate(-90 18,80)">minutes</text>
+<line x1="80.0" y1="570" x2="80.0" y2="576" stroke="#94a3b8" stroke-width="1"/>
+<text x="70.0" y="594" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">-14</text>
+<line x1="352.5" y1="570" x2="352.5" y2="576" stroke="#94a3b8" stroke-width="1"/>
+<text x="342.5" y="594" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">-7</text>
+<line x1="625.0" y1="60" x2="625.0" y2="570" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="6,4"/>
+<line x1="625.0" y1="570" x2="625.0" y2="576" stroke="#94a3b8" stroke-width="1"/>
+<text x="615.0" y="594" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">0</text>
+<line x1="897.5" y1="570" x2="897.5" y2="576" stroke="#94a3b8" stroke-width="1"/>
+<text x="887.5" y="594" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">7</text>
+<line x1="1170.0" y1="570" x2="1170.0" y2="576" stroke="#94a3b8" stroke-width="1"/>
+<text x="1160.0" y="594" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">14</text>
+<line x1="74" y1="570.0" x2="80" y2="570.0" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="574.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">86.39</text>
+<line x1="74" y1="468.00000000000006" x2="80" y2="468.00000000000006" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="472.00000000000006" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">91.63</text>
+<line x1="74" y1="366.0000000000001" x2="80" y2="366.0000000000001" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="370.0000000000001" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">96.86</text>
+<line x1="74" y1="263.9999999999999" x2="80" y2="263.9999999999999" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="267.9999999999999" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">102.09</text>
+<line x1="74" y1="161.99999999999994" x2="80" y2="161.99999999999994" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="165.99999999999994" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">107.32</text>
+<line x1="74" y1="60.0" x2="80" y2="60.0" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="64.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">112.56</text>
+<path d="M 80.00 243.04 L 118.93 330.03 L 157.86 570.00 L 196.79 389.33 L 235.71 468.83 L 274.64 277.99 L 313.57 392.54 L 352.50 282.44 L 391.43 450.19 L 430.36 370.30 L 469.29 344.54 L 508.21 558.65 L 547.14 569.92 L 586.07 295.11 L 625.00 85.28 L 663.93 60.00 L 702.86 217.26 L 741.79 289.43 L 780.71 465.91 L 819.64 514.52 L 858.57 488.98 L 897.50 465.38 L 936.43 347.66 L 975.36 360.64 L 1014.29 481.71 L 1053.21 443.24 L 1092.14 427.10 L 1131.07 175.47 L 1170.00 218.36" fill="none" stroke="#38bdf8" stroke-width="3"/>
+<circle cx="1170.00" cy="218.36" r="4" fill="#38bdf8"/>
+<text x="1030" y="80" fill="#38bdf8" font-size="14" font-family="Arial, sans-serif">spotify</text>
+</svg>
