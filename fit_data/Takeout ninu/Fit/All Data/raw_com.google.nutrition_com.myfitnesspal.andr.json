@@ -1,0 +1,6 @@
+{
+    "Data Source": "raw:com.google.nutrition:com.myfitnesspal.android:health_platform",
+    "Data Points": [
+        {"fitValue":[{"value":{"mapVal":[{"value":{"fpVal":0},"key":"potassium"},{"value":{"fpVal":1391},"key":"calcium"},{"value":{"fpVal":0},"key":"vitamin_a"},{"value":{"fpVal":0},"key":"vitamin_c"},{"value":{"fpVal":29.399999618530273},"key":"carbs.total"},{"value":{"fpVal":0},"key":"fat.polyunsaturated"},{"value":{"fpVal":189.32000732421875},"key":"calories"},{"value":{"fpVal":0},"key":"fat.trans"},{"value":{"fpVal":0},"key":"fat.monounsaturated"},{"value":{"fpVal":4.5},"key":"fat.total"},{"value":{"fpVal":138.1999969482422},"key":"sodium"},{"value":{"fpVal":1.5},"key":"fat.saturated"},{"value":{"fpVal":8.680000305175781},"key":"protein"},{"value":{"fpVal":0},"key":"cholesterol"},{"value":{"fpVal":0},"key":"iron"},{"value":{"fpVal":14},"key":"sugar"},{"value":{"fpVal":0},"key":"dietary_fiber"}]}},{"value":{"intVal":1}},{"value":{}}],"originDataSourceId":"","endTimeNanos":1772499599999000000,"dataTypeName":"com.google.nutrition","startTimeNanos":1772499599999000000,"modifiedTimeMillis":1773184795129,"rawTimestampNanos":0}
+    ]
+}

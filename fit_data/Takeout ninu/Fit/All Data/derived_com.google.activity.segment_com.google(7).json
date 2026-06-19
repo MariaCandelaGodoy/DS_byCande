@@ -1,0 +1,11 @@
+{
+    "Data Source": "derived:com.google.activity.segment:com.google.android.gms:session_activity_segment",
+    "Data Points": [
+        {"fitValue":[{"value":{"intVal":56}}],"originDataSourceId":"derived:com.google.activity.segment:com.google.android.apps.fitness:session_activity_segment","endTimeNanos":1694828696882000000,"dataTypeName":"com.google.activity.segment","startTimeNanos":1694827976882000000,"modifiedTimeMillis":1694831552313,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"intVal":80}}],"originDataSourceId":"derived:com.google.activity.segment:com.google.android.apps.fitness:session_activity_segment","endTimeNanos":1694830636287000000,"dataTypeName":"com.google.activity.segment","startTimeNanos":1694827936287000000,"modifiedTimeMillis":1694831552313,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"intVal":8}}],"originDataSourceId":"derived:com.google.activity.segment:com.nike.plusgps:session_activity_segment","endTimeNanos":1773097556621000000,"dataTypeName":"com.google.activity.segment","startTimeNanos":1773095969172000000,"modifiedTimeMillis":1773184795137,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"intVal":8}}],"originDataSourceId":"derived:com.google.activity.segment:com.nike.plusgps:session_activity_segment","endTimeNanos":1773272323892000000,"dataTypeName":"com.google.activity.segment","startTimeNanos":1773270214431000000,"modifiedTimeMillis":1773275154955,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"intVal":8}}],"originDataSourceId":"derived:com.google.activity.segment:com.nike.plusgps:session_activity_segment","endTimeNanos":1778021929536000000,"dataTypeName":"com.google.activity.segment","startTimeNanos":1778019658610000000,"modifiedTimeMillis":1778111258395,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"intVal":8}}],"originDataSourceId":"derived:com.google.activity.segment:com.nike.plusgps:session_activity_segment","endTimeNanos":1778192974383000000,"dataTypeName":"com.google.activity.segment","startTimeNanos":1778191014354000000,"modifiedTimeMillis":1778291143918,"rawTimestampNanos":0}
+    ]
+}

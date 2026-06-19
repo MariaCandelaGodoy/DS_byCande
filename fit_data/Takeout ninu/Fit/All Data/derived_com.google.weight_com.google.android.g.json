@@ -1,0 +1,12 @@
+{
+    "Data Source": "derived:com.google.weight:com.google.android.gms:merge_weight",
+    "Data Points": [
+        {"fitValue":[{"value":{"fpVal":62.00012969970703}}],"originDataSourceId":"raw:com.google.weight:com.myfitnesspal.android:MyFitnessPal","endTimeNanos":1687834800000000000,"dataTypeName":"com.google.weight","startTimeNanos":1687834800000000000,"modifiedTimeMillis":1706128386609,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":62}}],"originDataSourceId":"raw:com.google.weight:com.google.android.apps.fitness:user_input","endTimeNanos":1694829209534000000,"dataTypeName":"com.google.weight","startTimeNanos":1694829209534000000,"modifiedTimeMillis":1694829277660,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":60.99995803833008}}],"originDataSourceId":"raw:com.google.weight:com.myfitnesspal.android:MyFitnessPal","endTimeNanos":1706497200000000000,"dataTypeName":"com.google.weight","startTimeNanos":1706497200000000000,"modifiedTimeMillis":1706580074528,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":60.99995040893555}}],"originDataSourceId":"raw:com.google.weight:com.myfitnesspal.android:MyFitnessPal","endTimeNanos":1706577138016000000,"dataTypeName":"com.google.weight","startTimeNanos":1706577138016000000,"modifiedTimeMillis":1706580074528,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":59.49993133544922}}],"originDataSourceId":"raw:com.google.weight:com.myfitnesspal.android:MyFitnessPal","endTimeNanos":1706756400000000000,"dataTypeName":"com.google.weight","startTimeNanos":1706756400000000000,"modifiedTimeMillis":1706807988797,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":59.49995422363281}}],"originDataSourceId":"raw:com.google.weight:com.myfitnesspal.android:MyFitnessPal","endTimeNanos":1706804369244000000,"dataTypeName":"com.google.weight","startTimeNanos":1706804369244000000,"modifiedTimeMillis":1706807988797,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":62}}],"originDataSourceId":"raw:com.google.weight:com.google.android.apps.fitness:user_input","endTimeNanos":1770725185416000000,"dataTypeName":"com.google.weight","startTimeNanos":1770725185416000000,"modifiedTimeMillis":1770725210985,"rawTimestampNanos":0}
+    ]
+}

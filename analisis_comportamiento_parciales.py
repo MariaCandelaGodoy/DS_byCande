@@ -17,6 +17,15 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 
 WINDOW_DAYS = 14
 
+STUDENT_NAME_ALIASES = {
+    "nina": "ninu",
+}
+
+
+def normalize_student_name(name: str) -> str:
+    clean = str(name or "").strip()
+    return STUDENT_NAME_ALIASES.get(clean.lower(), clean)
+
 
 def write_output_text(output_name: str, content: str) -> None:
     try:
@@ -220,13 +229,13 @@ def parse_any_date(value: str) -> date | None:
 
 def extract_student_from_path(path: Path, prefix: str) -> str:
     if path.name.startswith(prefix):
-        return path.name.replace(prefix, "").strip()
+        return normalize_student_name(path.name.replace(prefix, "").strip())
     if path.parent.name.startswith(prefix):
-        return path.parent.name.replace(prefix, "").strip()
+        return normalize_student_name(path.parent.name.replace(prefix, "").strip())
     for parent in path.parents:
         if parent.name.startswith(prefix):
-            return parent.name.replace(prefix, "").strip()
-    return path.stem
+            return normalize_student_name(parent.name.replace(prefix, "").strip())
+    return normalize_student_name(path.stem)
 
 
 def read_samsung_csv_rows(path: Path) -> tuple[list[str], list[list[str]]]:
@@ -405,7 +414,7 @@ def load_takeout_daily_steps(folder: Path, relevant_dates: set[date] | None = No
     if not metrics_dir.exists():
         return []
 
-    student = folder.name.replace("Takeout", "").strip()
+    student = normalize_student_name(folder.name.replace("Takeout", "").strip())
     rows: list[dict] = []
     for day_file in metrics_dir.glob("*.csv"):
         if day_file.name.lower() == "daily activity metrics.csv":

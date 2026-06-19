@@ -1,62 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="338" viewBox="0 0 1080 338">
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="338" viewBox="0 0 980 338">
 <rect width="100%" height="100%" fill="#0f172a"/>
 <text x="24" y="34" fill="#e2e8f0" font-size="22" font-family="Arial, sans-serif">Matriz de cambio porcentual por estudiante y fuente</text>
 <text x="24" y="58" fill="#94a3b8" font-size="13" font-family="Arial, sans-serif">Color mas intenso = cambio mayor; fuente por fila y estudiante por columna</text>
-<text x="178.00" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 178.00,62)">Nina</text>
-<text x="302.29" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 302.29,62)">cande</text>
-<text x="426.57" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 426.57,62)">juanma</text>
-<text x="550.86" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 550.86,62)">ninu</text>
-<text x="675.14" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 675.14,62)">tizi</text>
-<text x="799.43" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 799.43,62)">vicky</text>
-<text x="923.71" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 923.71,62)">zahi</text>
+<text x="178.00" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 178.00,62)">cande</text>
+<text x="306.33" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 306.33,62)">juanma</text>
+<text x="434.67" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 434.67,62)">ninu</text>
+<text x="563.00" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 563.00,62)">tizi</text>
+<text x="691.33" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 691.33,62)">vicky</text>
+<text x="819.67" y="62" fill="#cbd5e1" font-size="11" font-family="Arial, sans-serif" transform="rotate(-35 819.67,62)">zahi</text>
 <text x="24" y="94" fill="#cbd5e1" font-size="15" font-family="Arial, sans-serif">netflix</text>
-<rect x="170.00" y="70.00" width="120.29" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
-<rect x="294.29" y="70.00" width="120.29" height="34" rx="6" fill="rgb(48,146,193)" opacity="0.92"/>
-<text x="356.43" y="94" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+2.8</text>
-<rect x="418.57" y="70.00" width="120.29" height="34" rx="6" fill="rgb(30,41,59)" opacity="0.92"/>
-<text x="480.71" y="94" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-23.9</text>
-<rect x="542.86" y="70.00" width="120.29" height="34" rx="6" fill="rgb(46,133,177)" opacity="0.92"/>
-<text x="605.00" y="94" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-0.5</text>
-<rect x="667.14" y="70.00" width="120.29" height="34" rx="6" fill="rgb(40,99,133)" opacity="0.92"/>
-<text x="729.29" y="94" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-9.1</text>
-<rect x="791.43" y="70.00" width="120.29" height="34" rx="6" fill="rgb(56,189,248)" opacity="0.92"/>
-<text x="853.57" y="94" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+13.4</text>
-<rect x="915.71" y="70.00" width="120.29" height="34" rx="6" fill="rgb(37,84,113)" opacity="0.92"/>
-<text x="977.86" y="94" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-13.0</text>
+<rect x="170.00" y="70.00" width="124.33" height="34" rx="6" fill="rgb(48,146,193)" opacity="0.92"/>
+<text x="234.17" y="94" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+2.8</text>
+<rect x="298.33" y="70.00" width="124.33" height="34" rx="6" fill="rgb(30,41,59)" opacity="0.92"/>
+<text x="362.50" y="94" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-23.9</text>
+<rect x="426.67" y="70.00" width="124.33" height="34" rx="6" fill="rgb(46,133,177)" opacity="0.92"/>
+<text x="490.83" y="94" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-0.5</text>
+<rect x="555.00" y="70.00" width="124.33" height="34" rx="6" fill="rgb(40,99,133)" opacity="0.92"/>
+<text x="619.17" y="94" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-9.1</text>
+<rect x="683.33" y="70.00" width="124.33" height="34" rx="6" fill="rgb(56,189,248)" opacity="0.92"/>
+<text x="747.50" y="94" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+13.4</text>
+<rect x="811.67" y="70.00" width="124.33" height="34" rx="6" fill="rgb(37,84,113)" opacity="0.92"/>
+<text x="875.83" y="94" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-13.0</text>
 <text x="24" y="132" fill="#cbd5e1" font-size="15" font-family="Arial, sans-serif">sleep</text>
-<rect x="170.00" y="108.00" width="120.29" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
-<rect x="294.29" y="108.00" width="120.29" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
-<rect x="418.57" y="108.00" width="120.29" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
-<rect x="542.86" y="108.00" width="120.29" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
-<rect x="667.14" y="108.00" width="120.29" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
-<rect x="791.43" y="108.00" width="120.29" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
-<rect x="915.71" y="108.00" width="120.29" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
+<rect x="170.00" y="108.00" width="124.33" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
+<rect x="298.33" y="108.00" width="124.33" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
+<rect x="426.67" y="108.00" width="124.33" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
+<rect x="555.00" y="108.00" width="124.33" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
+<rect x="683.33" y="108.00" width="124.33" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
+<rect x="811.67" y="108.00" width="124.33" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
 <text x="24" y="170" fill="#cbd5e1" font-size="15" font-family="Arial, sans-serif">spotify</text>
-<rect x="170.00" y="146.00" width="120.29" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
-<rect x="294.29" y="146.00" width="120.29" height="34" rx="6" fill="rgb(45,131,174)" opacity="0.92"/>
-<text x="356.43" y="170" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-1.0</text>
-<rect x="418.57" y="146.00" width="120.29" height="34" rx="6" fill="rgb(46,135,179)" opacity="0.92"/>
-<text x="480.71" y="170" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+0.0</text>
-<rect x="542.86" y="146.00" width="120.29" height="34" rx="6" fill="rgb(46,133,177)" opacity="0.92"/>
-<text x="605.00" y="170" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-0.6</text>
-<rect x="667.14" y="146.00" width="120.29" height="34" rx="6" fill="rgb(52,168,221)" opacity="0.92"/>
-<text x="729.29" y="170" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+8.2</text>
-<rect x="791.43" y="146.00" width="120.29" height="34" rx="6" fill="rgb(51,162,213)" opacity="0.92"/>
-<text x="853.57" y="170" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+6.7</text>
-<rect x="915.71" y="146.00" width="120.29" height="34" rx="6" fill="rgb(52,170,223)" opacity="0.92"/>
-<text x="977.86" y="170" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+8.7</text>
+<rect x="170.00" y="146.00" width="124.33" height="34" rx="6" fill="rgb(45,131,174)" opacity="0.92"/>
+<text x="234.17" y="170" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-1.0</text>
+<rect x="298.33" y="146.00" width="124.33" height="34" rx="6" fill="rgb(46,135,179)" opacity="0.92"/>
+<text x="362.50" y="170" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+0.0</text>
+<rect x="426.67" y="146.00" width="124.33" height="34" rx="6" fill="rgb(46,133,177)" opacity="0.92"/>
+<text x="490.83" y="170" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-0.6</text>
+<rect x="555.00" y="146.00" width="124.33" height="34" rx="6" fill="rgb(52,168,221)" opacity="0.92"/>
+<text x="619.17" y="170" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+8.2</text>
+<rect x="683.33" y="146.00" width="124.33" height="34" rx="6" fill="rgb(51,162,213)" opacity="0.92"/>
+<text x="747.50" y="170" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+6.7</text>
+<rect x="811.67" y="146.00" width="124.33" height="34" rx="6" fill="rgb(52,170,223)" opacity="0.92"/>
+<text x="875.83" y="170" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+8.7</text>
 <text x="24" y="208" fill="#cbd5e1" font-size="15" font-family="Arial, sans-serif">steps</text>
-<rect x="170.00" y="184.00" width="120.29" height="34" rx="6" fill="rgb(55,185,242)" opacity="0.92"/>
-<text x="232.14" y="208" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+12.5</text>
-<rect x="294.29" y="184.00" width="120.29" height="34" rx="6" fill="rgb(50,158,209)" opacity="0.92"/>
-<text x="356.43" y="208" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+5.8</text>
-<rect x="418.57" y="184.00" width="120.29" height="34" rx="6" fill="rgb(42,111,149)" opacity="0.92"/>
-<text x="480.71" y="208" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-6.0</text>
-<rect x="542.86" y="184.00" width="120.29" height="34" rx="6" fill="#1e293b" opacity="0.92"/>
-<rect x="667.14" y="184.00" width="120.29" height="34" rx="6" fill="rgb(45,128,171)" opacity="0.92"/>
-<text x="729.29" y="208" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-1.7</text>
-<rect x="791.43" y="184.00" width="120.29" height="34" rx="6" fill="rgb(40,103,138)" opacity="0.92"/>
-<text x="853.57" y="208" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-8.1</text>
-<rect x="915.71" y="184.00" width="120.29" height="34" rx="6" fill="rgb(51,161,212)" opacity="0.92"/>
-<text x="977.86" y="208" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+6.5</text>
+<rect x="170.00" y="184.00" width="124.33" height="34" rx="6" fill="rgb(50,158,209)" opacity="0.92"/>
+<text x="234.17" y="208" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+5.8</text>
+<rect x="298.33" y="184.00" width="124.33" height="34" rx="6" fill="rgb(42,111,149)" opacity="0.92"/>
+<text x="362.50" y="208" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-6.0</text>
+<rect x="426.67" y="184.00" width="124.33" height="34" rx="6" fill="rgb(55,185,242)" opacity="0.92"/>
+<text x="490.83" y="208" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+12.5</text>
+<rect x="555.00" y="184.00" width="124.33" height="34" rx="6" fill="rgb(45,128,171)" opacity="0.92"/>
+<text x="619.17" y="208" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-1.7</text>
+<rect x="683.33" y="184.00" width="124.33" height="34" rx="6" fill="rgb(40,103,138)" opacity="0.92"/>
+<text x="747.50" y="208" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">-8.1</text>
+<rect x="811.67" y="184.00" width="124.33" height="34" rx="6" fill="rgb(51,161,212)" opacity="0.92"/>
+<text x="875.83" y="208" text-anchor="middle" fill="#f8fafc" font-size="12" font-family="Arial, sans-serif">+6.5</text>
 </svg>

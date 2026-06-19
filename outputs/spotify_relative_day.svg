@@ -18,14 +18,14 @@
 <text x="1160.0" y="594" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">14</text>
 <line x1="74" y1="570.0" x2="80" y2="570.0" stroke="#94a3b8" stroke-width="1"/>
 <text x="18" y="574.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">86.39</text>
-<line x1="74" y1="468.00000000000006" x2="80" y2="468.00000000000006" stroke="#94a3b8" stroke-width="1"/>
-<text x="18" y="472.00000000000006" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">91.63</text>
-<line x1="74" y1="366.0000000000001" x2="80" y2="366.0000000000001" stroke="#94a3b8" stroke-width="1"/>
-<text x="18" y="370.0000000000001" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">96.86</text>
-<line x1="74" y1="263.9999999999999" x2="80" y2="263.9999999999999" stroke="#94a3b8" stroke-width="1"/>
-<text x="18" y="267.9999999999999" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">102.09</text>
-<line x1="74" y1="161.99999999999994" x2="80" y2="161.99999999999994" stroke="#94a3b8" stroke-width="1"/>
-<text x="18" y="165.99999999999994" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">107.32</text>
+<line x1="74" y1="468.0" x2="80" y2="468.0" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="472.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">91.63</text>
+<line x1="74" y1="366.0" x2="80" y2="366.0" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="370.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">96.86</text>
+<line x1="74" y1="264.0" x2="80" y2="264.0" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="268.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">102.09</text>
+<line x1="74" y1="162.0" x2="80" y2="162.0" stroke="#94a3b8" stroke-width="1"/>
+<text x="18" y="166.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">107.32</text>
 <line x1="74" y1="60.0" x2="80" y2="60.0" stroke="#94a3b8" stroke-width="1"/>
 <text x="18" y="64.0" fill="#94a3b8" font-size="12" font-family="Arial, sans-serif">112.56</text>
 <path d="M 80.00 243.04 L 118.93 330.03 L 157.86 570.00 L 196.79 389.33 L 235.71 468.83 L 274.64 277.99 L 313.57 392.54 L 352.50 282.44 L 391.43 450.19 L 430.36 370.30 L 469.29 344.54 L 508.21 558.65 L 547.14 569.92 L 586.07 295.11 L 625.00 85.28 L 663.93 60.00 L 702.86 217.26 L 741.79 289.43 L 780.71 465.91 L 819.64 514.52 L 858.57 488.98 L 897.50 465.38 L 936.43 347.66 L 975.36 360.64 L 1014.29 481.71 L 1053.21 443.24 L 1092.14 427.10 L 1131.07 175.47 L 1170.00 218.36" fill="none" stroke="#38bdf8" stroke-width="3"/>

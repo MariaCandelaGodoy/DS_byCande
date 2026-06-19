@@ -1,0 +1,38 @@
+{
+  "fitnessActivity": "walking",
+  "startTime": "2024-02-04T16:59:54.310Z",
+  "endTime": "2024-02-04T17:15:36.557Z",
+  "duration": "942.247s",
+  "segment": [{
+    "fitnessActivity": "walking",
+    "startTime": "2024-02-04T16:59:54.310Z",
+    "endTime": "2024-02-04T17:00:07.590Z"
+  }, {
+    "fitnessActivity": "walking",
+    "startTime": "2024-02-04T17:00:07.590Z",
+    "endTime": "2024-02-04T17:14:23.936Z"
+  }, {
+    "fitnessActivity": "walking",
+    "startTime": "2024-02-04T17:14:23.936Z",
+    "endTime": "2024-02-04T17:15:36.557Z"
+  }],
+  "aggregate": [{
+    "metricName": "com.google.heart_minutes.summary",
+    "floatValue": 14.0
+  }, {
+    "metricName": "com.google.calories.expended",
+    "floatValue": 59.178294902260404
+  }, {
+    "metricName": "com.google.step_count.delta",
+    "intValue": 1628
+  }, {
+    "metricName": "com.google.distance.delta",
+    "floatValue": 1000.8542969475733
+  }, {
+    "metricName": "com.google.speed.summary",
+    "floatValue": 1.0863893946134482
+  }, {
+    "metricName": "com.google.active_minutes",
+    "intValue": 15
+  }]
+}

@@ -1,0 +1,9 @@
+{
+    "Data Source": "raw:com.google.step_count.delta:com.nike.plusgps:Xiaomi:24116RACCG::health_platform",
+    "Data Points": [
+        {"fitValue":[{"value":{"intVal":3990}}],"originDataSourceId":"","endTimeNanos":1773097556620000000,"dataTypeName":"com.google.step_count.delta","startTimeNanos":1773095969172000000,"modifiedTimeMillis":1773184795137,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"intVal":5422}}],"originDataSourceId":"","endTimeNanos":1773272323891000000,"dataTypeName":"com.google.step_count.delta","startTimeNanos":1773270214431000000,"modifiedTimeMillis":1773275154955,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"intVal":4015}}],"originDataSourceId":"","endTimeNanos":1778021929535000000,"dataTypeName":"com.google.step_count.delta","startTimeNanos":1778019658610000000,"modifiedTimeMillis":1778111258393,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"intVal":4381}}],"originDataSourceId":"","endTimeNanos":1778192974382000000,"dataTypeName":"com.google.step_count.delta","startTimeNanos":1778191014354000000,"modifiedTimeMillis":1778291143905,"rawTimestampNanos":0}
+    ]
+}

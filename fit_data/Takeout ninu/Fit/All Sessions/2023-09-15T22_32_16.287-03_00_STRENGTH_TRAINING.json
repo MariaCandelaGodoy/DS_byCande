@@ -1,0 +1,31 @@
+{
+  "fitnessActivity": "strength_training",
+  "startTime": "2023-09-16T01:32:16.287Z",
+  "endTime": "2023-09-16T02:17:16.287Z",
+  "duration": "1631.975s",
+  "segment": [{
+    "fitnessActivity": "running.jogging",
+    "startTime": "2023-09-16T01:32:56.882Z",
+    "endTime": "2023-09-16T01:44:56.882Z"
+  }, {
+    "fitnessActivity": "strength_training",
+    "startTime": "2023-09-16T02:02:04.312Z",
+    "endTime": "2023-09-16T02:17:16.287Z"
+  }],
+  "aggregate": [{
+    "metricName": "com.google.calories.expended",
+    "floatValue": 124.32708251376947
+  }, {
+    "metricName": "com.google.step_count.delta",
+    "intValue": 2119
+  }, {
+    "metricName": "com.google.distance.delta",
+    "floatValue": 42.40117949045718
+  }, {
+    "metricName": "com.google.speed.summary",
+    "floatValue": 1.0605297898973083
+  }, {
+    "metricName": "com.google.active_minutes",
+    "intValue": 44
+  }]
+}

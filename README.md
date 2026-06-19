@@ -2,6 +2,8 @@
 
 Pipeline de analisis para evaluar cambios de comportamiento alrededor de parciales usando datos personales de consumo digital y actividad fisica.
 
+Documentacion completa del proyecto: `DOCUMENTACION.md`.
+
 ## Objetivo
 
 Este proyecto cruza tres fuentes principales para responder la hipotesis de si los estudiantes cambian su rutina cuando tienen examenes:

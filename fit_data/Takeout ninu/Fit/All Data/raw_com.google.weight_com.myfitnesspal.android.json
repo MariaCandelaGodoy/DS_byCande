@@ -1,0 +1,10 @@
+{
+    "Data Source": "raw:com.google.weight:com.myfitnesspal.android:MyFitnessPal",
+    "Data Points": [
+        {"fitValue":[{"value":{"fpVal":62.00012969970703}}],"originDataSourceId":"","endTimeNanos":1687834800000000000,"dataTypeName":"com.google.weight","startTimeNanos":1687834800000000000,"modifiedTimeMillis":1706580069340,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":60.99995803833008}}],"originDataSourceId":"","endTimeNanos":1706497200000000000,"dataTypeName":"com.google.weight","startTimeNanos":1706497200000000000,"modifiedTimeMillis":1706807983594,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":60.99995040893555}}],"originDataSourceId":"","endTimeNanos":1706577138016000000,"dataTypeName":"com.google.weight","startTimeNanos":1706577138016000000,"modifiedTimeMillis":1706580069340,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":59.49993133544922}}],"originDataSourceId":"","endTimeNanos":1706756400000000000,"dataTypeName":"com.google.weight","startTimeNanos":1706756400000000000,"modifiedTimeMillis":1709168176817,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":59.49995422363281}}],"originDataSourceId":"","endTimeNanos":1706804369244000000,"dataTypeName":"com.google.weight","startTimeNanos":1706804369244000000,"modifiedTimeMillis":1706807983594,"rawTimestampNanos":0}
+    ]
+}

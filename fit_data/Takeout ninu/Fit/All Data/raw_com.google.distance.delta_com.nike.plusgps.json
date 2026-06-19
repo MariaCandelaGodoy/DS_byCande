@@ -1,0 +1,9 @@
+{
+    "Data Source": "raw:com.google.distance.delta:com.nike.plusgps:Xiaomi:24116RACCG::health_platform",
+    "Data Points": [
+        {"fitValue":[{"value":{"fpVal":3023.6484375}}],"originDataSourceId":"","endTimeNanos":1773097556620000000,"dataTypeName":"com.google.distance.delta","startTimeNanos":1773095969172000000,"modifiedTimeMillis":1773184795137,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":4046.71923828125}}],"originDataSourceId":"","endTimeNanos":1773272323891000000,"dataTypeName":"com.google.distance.delta","startTimeNanos":1773270214431000000,"modifiedTimeMillis":1773275154955,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":3015.126708984375}}],"originDataSourceId":"","endTimeNanos":1778021929535000000,"dataTypeName":"com.google.distance.delta","startTimeNanos":1778019658610000000,"modifiedTimeMillis":1778111258395,"rawTimestampNanos":0},
+        {"fitValue":[{"value":{"fpVal":3003.093017578125}}],"originDataSourceId":"","endTimeNanos":1778192974382000000,"dataTypeName":"com.google.distance.delta","startTimeNanos":1778191014354000000,"modifiedTimeMillis":1778291143886,"rawTimestampNanos":0}
+    ]
+}
