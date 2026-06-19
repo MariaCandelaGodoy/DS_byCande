@@ -30,6 +30,11 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def output_csv(name: str) -> Path:
+    output_path = BASE_DIR / "outputs" / name
+    return output_path if output_path.exists() else BASE_DIR / name
+
+
 def fmt_num(value: str | float | None, decimals: int = 2) -> str:
     if value in (None, ""):
         return "-"
@@ -283,14 +288,14 @@ def build_report() -> None:
     ranking = read_csv(BASE_DIR / "outputs" / "ranking_support_score.csv")
     top_ranking = ranking[:6]
     kmeans = {
-        "Netflix": read_csv(BASE_DIR / "kmeans_evaluation_views.csv"),
-        "Spotify": read_csv(BASE_DIR / "kmeans_evaluation_minutes.csv"),
-        "Steps": read_csv(BASE_DIR / "kmeans_evaluation_steps.csv"),
+        "Netflix": read_csv(output_csv("kmeans_evaluation_views.csv")),
+        "Spotify": read_csv(output_csv("kmeans_evaluation_minutes.csv")),
+        "Steps": read_csv(output_csv("kmeans_evaluation_steps.csv")),
     }
     agg = {
-        "Netflix": read_csv(BASE_DIR / "agglomerative_evaluation_views.csv"),
-        "Spotify": read_csv(BASE_DIR / "agglomerative_evaluation_minutes.csv"),
-        "Steps": read_csv(BASE_DIR / "agglomerative_evaluation_steps.csv"),
+        "Netflix": read_csv(output_csv("agglomerative_evaluation_views.csv")),
+        "Spotify": read_csv(output_csv("agglomerative_evaluation_minutes.csv")),
+        "Steps": read_csv(output_csv("agglomerative_evaluation_steps.csv")),
     }
 
     doc.add_heading("1. Introduccion", level=1)

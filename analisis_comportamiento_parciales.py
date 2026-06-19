@@ -9,6 +9,8 @@ import math
 import re
 import xml.etree.ElementTree as ET
 from statistics import mean, pstdev
+from sklearn.cluster import AgglomerativeClustering, KMeans
+from sklearn.metrics import silhouette_score
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -34,92 +36,6 @@ def write_output_text(output_name: str, content: str) -> None:
         print(f"No se pudo escribir outputs/{output_name}: {exc}")
 
 
-def euclidean_distance(a: list[float], b: list[float]) -> float:
-    return math.sqrt(sum((x - y) ** 2 for x, y in zip(a, b)))
-
-
-class KMeans:
-    def __init__(self, n_clusters: int, random_state: int | None = None, n_init: int = 10, max_iter: int = 100):
-        self.n_clusters = n_clusters
-        self.max_iter = max_iter
-        self.inertia_ = 0.0
-
-    def _initial_centroids(self, vectors: list[list[float]]) -> list[list[float]]:
-        centroids = [vectors[0][:]]
-        while len(centroids) < self.n_clusters:
-            next_vector = max(
-                vectors,
-                key=lambda vector: min(euclidean_distance(vector, centroid)
-                                       for centroid in centroids),
-            )
-            centroids.append(next_vector[:])
-        return centroids
-
-    def fit_predict(self, vectors: list[list[float]]) -> list[int]:
-        if not vectors:
-            self.inertia_ = 0.0
-            return []
-
-        centroids = self._initial_centroids(vectors)
-        labels = [0] * len(vectors)
-
-        for _ in range(self.max_iter):
-            new_labels = [
-                min(range(len(centroids)),
-                    key=lambda label: euclidean_distance(vector, centroids[label]))
-                for vector in vectors
-            ]
-            new_centroids = []
-            for label in range(len(centroids)):
-                members = [vector for vector, assigned in zip(
-                    vectors, new_labels) if assigned == label]
-                if members:
-                    new_centroids.append(
-                        [sum(values) / len(values) for values in zip(*members)])
-                else:
-                    new_centroids.append(centroids[label])
-
-            if new_labels == labels:
-                centroids = new_centroids
-                break
-
-            labels = new_labels
-            centroids = new_centroids
-
-        self.inertia_ = sum(
-            euclidean_distance(vector, centroids[label]) ** 2
-            for vector, label in zip(vectors, labels)
-        )
-        return labels
-
-
-def silhouette_score_local(vectors: list[list[float]], labels: list[int]) -> float:
-    scores: list[float] = []
-    unique_labels = sorted(set(labels))
-    for index, vector in enumerate(vectors):
-        own_label = labels[index]
-        own_cluster = [
-            other
-            for other_index, other in enumerate(vectors)
-            if labels[other_index] == own_label and other_index != index
-        ]
-        a = mean([euclidean_distance(vector, other)
-                 for other in own_cluster]) if own_cluster else 0.0
-        other_distances = []
-        for label in unique_labels:
-            if label == own_label:
-                continue
-            members = [other for other, assigned in zip(
-                vectors, labels) if assigned == label]
-            if members:
-                other_distances.append(
-                    mean(euclidean_distance(vector, other) for other in members))
-        b = min(other_distances) if other_distances else 0.0
-        denominator = max(a, b)
-        scores.append((b - a) / denominator if denominator else 0.0)
-    return mean(scores) if scores else 0.0
-
-
 def cluster_inertia(vectors: list[list[float]], labels: list[int]) -> float:
     total = 0.0
     for label in sorted(set(labels)):
@@ -128,50 +44,9 @@ def cluster_inertia(vectors: list[list[float]], labels: list[int]) -> float:
         if not members:
             continue
         centroid = [sum(values) / len(values) for values in zip(*members)]
-        total += sum(euclidean_distance(vector, centroid) **
-                     2 for vector in members)
+        total += sum(sum((value - center) ** 2 for value,
+                     center in zip(vector, centroid)) for vector in members)
     return total
-
-
-def agglomerative_labels(vectors: list[list[float]], n_clusters: int) -> list[int]:
-    if not vectors:
-        return []
-
-    clusters = [[index] for index in range(len(vectors))]
-    target_clusters = max(1, min(n_clusters, len(vectors)))
-
-    def average_linkage(left: list[int], right: list[int]) -> float:
-        distances = [
-            euclidean_distance(vectors[left_index], vectors[right_index])
-            for left_index in left
-            for right_index in right
-        ]
-        return mean(distances) if distances else 0.0
-
-    while len(clusters) > target_clusters:
-        best_pair = min(
-            (
-                (average_linkage(clusters[i], clusters[j]), i, j)
-                for i in range(len(clusters))
-                for j in range(i + 1, len(clusters))
-            ),
-            key=lambda item: (item[0], item[1], item[2]),
-        )
-        _, left_index, right_index = best_pair
-        merged = sorted(clusters[left_index] + clusters[right_index])
-        clusters = [
-            cluster
-            for index, cluster in enumerate(clusters)
-            if index not in {left_index, right_index}
-        ]
-        clusters.append(merged)
-        clusters.sort(key=lambda cluster: cluster[0])
-
-    labels = [0] * len(vectors)
-    for label, cluster in enumerate(clusters):
-        for index in cluster:
-            labels[index] = label
-    return labels
 
 
 def parse_date_text(value: str) -> date | None:
@@ -1098,7 +973,7 @@ def write_interactive_dashboard(summary_rows: list[dict], output_name: str) -> N
     <div class="hero">
         <div class="card pad">
             <h1>Dashboard interactivo de comportamiento alrededor de parciales</h1>
-            <p class="subtitle">Filtra por fuente, estudiante y métrica. La vista 3D usa <strong>delta_pct</strong>, <strong>support_score</strong> y <strong>effect_size</strong> para ubicar cada caso en el espacio. Todo se genera sin librerías externas.</p>
+            <p class="subtitle">Filtra por fuente, estudiante y métrica. La vista 3D usa <strong>delta_pct</strong>, <strong>support_score</strong> y <strong>effect_size</strong> para ubicar cada caso en el espacio. Los modelos de clustering se calculan con scikit-learn.</p>
             <div class="chips" id="chips"></div>
         </div>
         <div class="card pad">
@@ -1530,7 +1405,7 @@ def evaluate_kmeans(normalized: list[list[float]], max_k: int = 6) -> tuple[list
         silhouette: float | None = None
         distinct_labels = len(set(labels))
         if 1 < distinct_labels < n_samples:
-            silhouette = float(silhouette_score_local(normalized, labels))
+            silhouette = float(silhouette_score(normalized, labels))
             if best_silhouette is None or silhouette > best_silhouette:
                 best_silhouette = silhouette
                 best_k = k
@@ -1560,11 +1435,17 @@ def evaluate_agglomerative(normalized: list[list[float]], max_k: int = 6) -> tup
     best_silhouette: float | None = None
 
     for k in range(1, upper_k + 1):
-        labels = agglomerative_labels(normalized, k)
+        if k == 1:
+            labels = [0] * n_samples
+        else:
+            labels = AgglomerativeClustering(
+                n_clusters=k,
+                linkage="average",
+            ).fit_predict(normalized)
         silhouette: float | None = None
         distinct_labels = len(set(labels))
         if 1 < distinct_labels < n_samples:
-            silhouette = float(silhouette_score_local(normalized, labels))
+            silhouette = float(silhouette_score(normalized, labels))
             if best_silhouette is None or silhouette > best_silhouette:
                 best_silhouette = silhouette
                 best_k = k
@@ -1657,7 +1538,10 @@ def build_agglomerative_cluster_csv(windowed: list[dict], value_key: str, output
         labels = [0] * len(students)
     else:
         n_clusters = k or evaluate_agglomerative(normalized)[1]
-        labels = agglomerative_labels(normalized, n_clusters)
+        labels = AgglomerativeClustering(
+            n_clusters=max(2, min(n_clusters, len(normalized))),
+            linkage="average",
+        ).fit_predict(normalized)
 
     with open_output_csv(output_name) as handle:
         writer = csv.DictWriter(handle, fieldnames=["student", "cluster"])
@@ -1680,7 +1564,10 @@ def build_clustering_comparison_csv(windowed: list[dict], value_key: str, output
     )
 
     kmeans_labels = kmeans.fit_predict(normalized)
-    agglomerative = agglomerative_labels(normalized, agglomerative_k)
+    agglomerative = AgglomerativeClustering(
+        n_clusters=max(2, min(agglomerative_k, len(normalized))),
+        linkage="average",
+    ).fit_predict(normalized)
 
     with (OUTPUT_DIR / output_name).open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(

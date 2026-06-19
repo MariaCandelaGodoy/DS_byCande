@@ -2,8 +2,6 @@
 
 Pipeline de analisis para evaluar cambios de comportamiento alrededor de parciales usando datos personales de consumo digital y actividad fisica.
 
-Documentacion completa del proyecto: `DOCUMENTACION.md`.
-
 ## Objetivo
 
 Este proyecto cruza tres fuentes principales para responder la hipotesis de si los estudiantes cambian su rutina cuando tienen examenes:
@@ -27,6 +25,10 @@ El script detecta automaticamente fuentes dentro del workspace:
 ## Como correr
 
 Desde la carpeta raiz del proyecto:
+
+```powershell
+pip install -r requirements.txt
+```
 
 ```powershell
 python analisis_comportamiento_parciales.py
@@ -119,8 +121,8 @@ Se aplica clustering sobre las series por estudiante para agrupar patrones simil
 
 1. Cada estudiante se representa como un vector con valores diarios alrededor del parcial.
 2. Se estandarizan las series para que la escala no domine el agrupamiento.
-3. Se evalua K-Means para distintos valores de `k` con metodo del codo e indice de silueta.
-4. Se prueba clustering jerarquico aglomerativo con enlace promedio sobre los mismos vectores.
+3. Se evalua K-Means de `scikit-learn` para distintos valores de `k` con metodo del codo e indice de silueta.
+4. Se prueba `AgglomerativeClustering` de `scikit-learn` con enlace promedio sobre los mismos vectores.
 5. Se usa el `k` con mejor silueta disponible y se deja la inercia para inspeccionar el codo manualmente.
 
 Interpretacion posible de los clusters:
